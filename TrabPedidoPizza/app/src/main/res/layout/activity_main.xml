@@ -30,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Selecione o sabor:" />
+                android:text="Selecione o Tamanho:" />
 
             <RadioGroup
                 android:layout_width="match_parent"
@@ -62,6 +62,11 @@
                     android:text="Grande" />
             </RadioGroup>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Selecione o Sabor:" />
+
             <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -70,16 +75,16 @@
                 android:padding="5dp" />
 
             <ListView
-                android:layout_marginTop="10dp"
                 android:id="@+id/lvSabores"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="236dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/cinza"
                 android:divider="@android:color/darker_gray"
                 android:dividerHeight="1dp"
                 android:paddingLeft="2dp"
-                android:background="@color/cinza"
                 android:paddingRight="2dp" />
-/
+
             <Button
                 android:id="@+id/btnRemoverSabor"
                 android:layout_width="wrap_content"
@@ -120,6 +125,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Valor Total:"
+                android:layout_marginBottom="15dp"
                 android:textStyle="bold" />
 
             <LinearLayout

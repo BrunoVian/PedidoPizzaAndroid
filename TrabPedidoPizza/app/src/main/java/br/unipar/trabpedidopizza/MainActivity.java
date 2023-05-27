@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayAdapter<String> listViewAdapter;
 
+    private RadioButton rbPequena, rbMedia, rbGrande;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,23 +34,53 @@ public class MainActivity extends AppCompatActivity {
 
         tvPedido = findViewById(R.id.tvPedido);
         spSabores = findViewById(R.id.spSabores);
+        lvSabores = findViewById(R.id.lvSabores);
+        rbGrande = findViewById(R.id.rbGrande);
+        rbPequena = findViewById(R.id.rbPequena);
+        rbMedia = findViewById(R.id.rbMedia);
 
-               String[] vetorSabores = new String[]{"", "Calabresa", "4 Queijos", "Bacon", "Portugesa"};
+        String[] vetorSabores = new String[]{"", "Calabresa", "4 Queijos", "Bacon", "Portugesa"};
 
         ArrayAdapter adapterSabores = new ArrayAdapter(this, android.R.layout.simple_list_item_1, vetorSabores);
 
         spSabores.setAdapter(adapterSabores);
 
-       /* listViewAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
+        listViewAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
         lvSabores.setAdapter(listViewAdapter);
 
         try {
             spSabores.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                    int quantidadeItens = listViewAdapter.getCount();
                     String selectedSabor = (String) parent.getItemAtPosition(position);
-                    if (!selectedSabor.isEmpty()) {
-                        listViewAdapter.add(selectedSabor);
+
+                    if (!selectedSabor.isEmpty() || !selectedSabor.equals("")) {
+
+                        if(!rbGrande.isChecked() && !rbMedia.isChecked() && !rbPequena.isChecked()){
+                            Toast.makeText(MainActivity.this, "Selecione o tamanho da Pizza! :)", Toast.LENGTH_SHORT).show();
+                        } else if (rbGrande.isChecked()) {
+                            if(quantidadeItens < 4){
+                                listViewAdapter.add(selectedSabor);
+                            }else{
+                                Toast.makeText(MainActivity.this, "A lista de sabores está cheia! :)", Toast.LENGTH_SHORT).show();
+                            }
+
+                        } else if (rbMedia.isChecked()){
+                            if(quantidadeItens < 3){
+                                listViewAdapter.add(selectedSabor);
+                            }else{
+                                Toast.makeText(MainActivity.this, "A lista de sabores está cheia! :)", Toast.LENGTH_SHORT).show();
+                            }
+
+                        } else if(rbPequena.isChecked()){
+                            if(quantidadeItens < 2){
+                                listViewAdapter.add(selectedSabor);
+                            }else{
+                                Toast.makeText(MainActivity.this, "A lista de sabores está cheia! :)", Toast.LENGTH_SHORT).show();
+                            }
+                        }
                     }
                 }
 
@@ -60,12 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
         } catch (Exception ex){
             Log.e("Erro: ", ex.getMessage());
-        }*/
-
-
-
-
-        //usar o arrayadapter
+        }
 
 
         /*cbAluno = findViewById(R.id.cbAluno);
