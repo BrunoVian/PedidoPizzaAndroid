@@ -68,9 +68,9 @@
                 android:text="Selecione o Sabor:" />
 
             <Spinner
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:id="@+id/spSabores"
+                android:layout_width="match_parent"
+                android:layout_height="37dp"
                 android:background="@color/cinza"
                 android:padding="5dp" />
 
