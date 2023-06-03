@@ -181,6 +181,7 @@ public class MainActivity extends AppCompatActivity {
                         tvPedido.setText(tvPedido.getText().toString().replace("Pequena", "Grande"));
                         calculaTotal();
                     } else if (!tvPedido.getText().toString().contains("Grande")) {
+                        tvPedido.setText(tvPedido.getText().toString() + "Pizza Grande com os sabores:\n");
                         calculaTotal();
                     }
 
@@ -266,13 +267,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void concluir(){
-        if(!rbGrande.isChecked() && !rbPequena.isChecked() && !rbMedia.isChecked() ){
+        if(!rbGrande.isChecked() && !rbPequena.isChecked() && !rbMedia.isChecked()){
             Toast.makeText(this, "Informe ao Menos o Tamanho da Pizza!!!", Toast.LENGTH_SHORT).show();
-        } else{
+        } else {
             Toast.makeText(this, "Pedido Concluido!", Toast.LENGTH_SHORT).show();
             limpar();
         }
-
     }
-
 }
