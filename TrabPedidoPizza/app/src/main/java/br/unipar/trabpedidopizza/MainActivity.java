@@ -12,6 +12,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     private Spinner spSabores;
 
     private ListView lvSabores;
+
+    private RadioGroup rgGrupo;
 
     private Button btnRemoverSabor, btnLimpar, btnConcluir;
 
@@ -52,8 +55,9 @@ public class MainActivity extends AppCompatActivity {
         cbBorda = findViewById(R.id.cbBorda);
         btnLimpar = findViewById(R.id.btnLimpar);
         btnConcluir = findViewById(R.id.btnConcluir);
+        rgGrupo = findViewById(R.id.rgGrupo);
 
-        String[] vetorSabores = new String[]{"", "Calabresa", "4 Queijos", "Bacon", "Portugesa"};
+        String[] vetorSabores = new String[]{"", "Calabresa", "Tomate Seco", "4 Queijos", "Bacon", "Portugesa", "Strogonoff"};
 
         ArrayAdapter adapterSabores = new ArrayAdapter(this, android.R.layout.simple_list_item_1, vetorSabores);
 
@@ -96,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
                 itemSelecionado = position;
             }
         });
+
         btnRemoverSabor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -133,6 +138,7 @@ public class MainActivity extends AppCompatActivity {
             } else if (rbGrande.isChecked()) {
                 if (quantidadeItens < 4) {
                     listViewAdapter.add(SaborSelecionado);
+                    spSabores.setSelection(0);
                     tvPedido.setText(tvPedido.getText().toString() + "- " + SaborSelecionado + "\n");
                 } else {
                     Toast.makeText(MainActivity.this, "A lista de sabores está cheia! :)", Toast.LENGTH_SHORT).show();
@@ -141,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
             } else if (rbMedia.isChecked()) {
                 if (quantidadeItens < 2) {
                     listViewAdapter.add(SaborSelecionado);
+                    spSabores.setSelection(0);
                     tvPedido.setText(tvPedido.getText().toString() + "- " + SaborSelecionado + "\n");
                 } else {
                     Toast.makeText(MainActivity.this, "A lista de sabores está cheia! :)", Toast.LENGTH_SHORT).show();
@@ -149,12 +156,16 @@ public class MainActivity extends AppCompatActivity {
             } else if (rbPequena.isChecked()) {
                 if (quantidadeItens < 1) {
                     listViewAdapter.add(SaborSelecionado);
+                    spSabores.setSelection(0);
                     tvPedido.setText(tvPedido.getText().toString() + "- " + SaborSelecionado + "\n");
                 } else {
                     Toast.makeText(MainActivity.this, "A lista de sabores está cheia! :)", Toast.LENGTH_SHORT).show();
                 }
             }
         }
+
+
+
     }
 
     public void SelecionarOpcao(View view) {
@@ -244,8 +255,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void limpar(){
-        tvPedido.setText(null);
-        tvValor.setText(null);
+        tvPedido.setText("Seu Pedido:\n");
+        tvValor.setText("Valor Total:");
         cbBorda.setChecked(false);
         cbRefri.setChecked(false);
         rbMedia.setChecked(false);
@@ -255,8 +266,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void concluir(){
-        Toast.makeText(this, "Pedido Concluido!", Toast.LENGTH_SHORT).show();
-        limpar();
+        if(!rbGrande.isChecked() && !rbPequena.isChecked() && !rbMedia.isChecked() ){
+            Toast.makeText(this, "Informe ao Menos o Tamanho da Pizza!!!", Toast.LENGTH_SHORT).show();
+        } else{
+            Toast.makeText(this, "Pedido Concluido!", Toast.LENGTH_SHORT).show();
+            limpar();
+        }
+
     }
 
 }
